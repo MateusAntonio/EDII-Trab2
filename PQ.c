@@ -2,73 +2,81 @@
 #include <stdlib.h>
 #include "PQ.h"
 
-static Item *pq;
-static int N;
+struct pq {
+    Item* files;
+    int size;
+};
 
-void fix_up(Item *a, int k) { // swim up
-    while (k > 1 && less(a[k/2], a[k])) {
-        exch(a[k], a[k/2]);
+void fix_up(PQ* pq) { // swim up
+    int k = pq->size;
+    while (k > 1 && less(pq->files[k/2], pq->files[k])) {
+        exch(pq->files[k], pq->files[k/2]);
         k = k/2;
     }
 }
 
-void fix_down(Item *a, int sz, int k){
+void fix_down(PQ* pq, int k){
+    int sz = pq->size;
   while (2*k <= sz) {
     int j = 2*k;
-    if (j < sz && less(a[j], a[j+1])){
+    if (j < sz && less(pq->files[j], pq->files[j+1])){
       j++;
     }
-    if (!less(a[k], a[j])) {
+    if (!less(pq->files[k], pq->files[j])) {
       break;
     }
-    exch(a[k], a[j]);
+    exch(pq->files[k], pq->files[j]);
     k = j;
   }
 }
 
-void PQ_init(int maxN) {
-    pq = malloc((maxN+1) * sizeof(Item));
-    N = 0;
+PQ* PQ_init(int maxN) {
+    PQ *pq = malloc(sizeof(PQ));
+    pq->files = malloc((maxN+1) * sizeof(Item));
+    pq->size = 0;
+    return pq;
 }
 
-void PQ_insert(Item v) {
-    N++;
-    pq[N] = v;
-    fix_up(pq, N);
+void PQ_insert(PQ* pq, Item v) {
+    pq->size++;
+    pq->files[pq->size] = v;
+    fix_up(pq);
 }
 
-Item PQ_delmax() {
-    Item max = pq[1];
-    exch(pq[1], pq[N]);
-    N--;
-    fix_down(pq, N, 1);
+Item PQ_delmax(PQ* pq) {
+    Item max = pq->files[1];
+    exch(pq->files[1], pq->files[pq->size]);
+    pq->size--;
+    fix_down(pq, 1);
     return max;
 }
 
-//TODO PQ_delmax(){
-
-//}
-
-Item PQ_max() {
-    return pq[1];
+Item PQ_delmin(PQ* pq){
+    Item min = pq->files[pq->size--];
+    return min;
 }
 
-bool PQ_empty() {
-    return N == 0;
+Item PQ_max(PQ* pq) {
+    return pq->files[1];
 }
 
-int  PQ_size() {
-    return N;
+bool PQ_empty(PQ* pq) {
+    return pq->size == 0;
 }
 
-void PQ_finish() {
+int  PQ_size(PQ* pq) {
+    return pq->size;
+}
+
+void PQ_finish(PQ* pq) {
+    free(pq->files);
     free(pq);
 }
 
-void PQ_print() {
-    printf("HEAP (%d): ", N);
-    for (int i = 1; i <= N; i++) {
-        printf("%d ", pq[i]);
+void PQ_print(PQ* pq) {
+    printf("HEAP (%d): ", pq->size);
+    for (int i = 1; i <= pq->size; i++) {
+        printf("%d ", pq->files[i]);
     }
     printf("\n");
 }
