@@ -16,7 +16,8 @@ PQ* file_read(char const *filename, int* numberOfFiles){
   fscanf(fp,"%d", numberOfFiles);
   PQ *pq = PQ_init(*numberOfFiles);
   int fileSize;
-  while((fileSize = fgetc(fp))!= EOF){
+  while((fscanf(fp, "%d", &fileSize))!= EOF){
+    printf("%d ", fileSize);
     PQ_insert(pq, fileSize);
   }
   return pq;
