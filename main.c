@@ -18,11 +18,13 @@ PQ* file_read(char const *filename){
   int numberOfFiles;
   fscanf(fp,"%d", &numberOfFiles);
   PQ *pq = PQ_init(numberOfFiles);
-  int fileSize = 0;
-  while((fscanf(fp, "%d", &fileSize))!= EOF){
-    // printf("%d\n", fileSize);
-    worstfit(pq, fileSize);
-  }
+  int fileSize[numberOfFiles];
+
+  for(int i = 0; i < numberOfFiles; i++)
+    fscanf(fp, "%d", &fileSize[i]);
+  
   fclose(fp);
+  
+  worstfit(pq, fileSize, numberOfFiles);
   return pq;
 }
