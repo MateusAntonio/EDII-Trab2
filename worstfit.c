@@ -1,4 +1,5 @@
 #include "worstfit.h"
+#include <stdlib.h>
 
 #define PARTITION_SIZE 1000000
 
@@ -14,5 +15,14 @@ void worstfit(PQ* pq,Item* fileSize, int numberOfFiles){
     else
       PQ_insert(pq, fileSize[i]); // Only if the current file doens't fit in none of the partitions already created.
   }
+}
+
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+
+void decreasing_worstfit(PQ* pq, Item* fileSize, int numberOfFiles){
+   qsort(fileSize, numberOfFiles, sizeof(Item), cmpfunc);
+   worstfit(pq, fileSize, numberOfFiles);
 }
 
