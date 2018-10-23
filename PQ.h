@@ -11,12 +11,7 @@ PQ* PQ_init(int);    // Creates an empty priority queue.
 
 void PQ_insert(PQ*,Item); // Inserts an item in the priority queue.
 
-// Removes and returns the largest item.
-Item PQ_delmax(PQ*);   // Dual op delmin also possible.
-
 Item PQ_delmin(PQ*);   // Removes and returns the smallest item.
-
-Item PQ_max(PQ*);      // Returns the largest item. Dual: min.
 
 Item PQ_min(PQ*);      // Returns the smallest item.
 
