@@ -19,19 +19,23 @@ PQ* file_read(char const *filename){
   fscanf(fp,"%d", &numberOfFiles);
   int fileSize[numberOfFiles];
 
-  for(int i = 0; i < numberOfFiles; i++)
+  for(int i = 0; i < numberOfFiles; i++){
     fscanf(fp, "%d", &fileSize[i]);
+    // printf("%d\n", fileSize[i]);
+  }
   
   fclose(fp);
   
   PQ *pq = PQ_init(numberOfFiles);
   worstfit(pq, fileSize, numberOfFiles);
   PQ_print(pq);
+  printf("worstfit: %d\n", PQ_size(pq));
   PQ_finish(pq);
 
   PQ* dpq = PQ_init(numberOfFiles);
   decreasing_worstfit(dpq, fileSize, numberOfFiles);
   PQ_print(dpq);
+  printf("decreasing-worstfit: %d\n", PQ_size(dpq));
   PQ_finish(dpq);
 
   return pq;
