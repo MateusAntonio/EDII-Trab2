@@ -1,4 +1,5 @@
 all:
-    gcc *.c -o trab2 -Wall -g
+	gcc *.c -o trab2 -Wall -g
+
 clean:
-    rm -rf trab2
+	rm -f trab2
