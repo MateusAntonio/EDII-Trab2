@@ -7,8 +7,7 @@ struct pq {
     int size;
 };
 
-void fix_up(PQ* pq) { // swim up
-    int k = pq->size;
+void fix_up(PQ* pq, int k) { // swim up
     while (k > 1 && greater(pq->usedSpace[k/2], pq->usedSpace[k])) {
         exch(pq->usedSpace[k], pq->usedSpace[k/2]);
         k = k/2;
@@ -40,7 +39,7 @@ PQ* PQ_init(int maxN) {
 void PQ_insert(PQ* pq, Item v) {
     pq->size++;
     pq->usedSpace[pq->size] = v;
-    fix_up(pq);
+    fix_up(pq, pq->size);
 }
 
 Item PQ_delmin(PQ* pq){
@@ -53,6 +52,12 @@ Item PQ_delmin(PQ* pq){
 
 Item PQ_min(PQ* pq){
     return pq->usedSpace[1];
+}
+
+void PQ_set_item_value(PQ* pq, int index, Item item){
+    pq->usedSpace[index] = item;
+    fix_up(pq, index);
+    fix_down(pq, index);
 }
 
 bool PQ_empty(PQ* pq) {

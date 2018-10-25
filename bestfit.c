@@ -1,10 +1,9 @@
-// #include "bestfit.h"
+#include "bestfit.h"
+#include "PQ.h"
 
-// #define PARTITION_SIZE 1000000
+#define PARTITION_SIZE 1000000
 
-// void bestfit(PQ* pq,Item fileSize){
-//   if(!PQ_empty(pq)){
-//     while(fileSize > PARTITION_SIZE -)
-//   }  
-// }
-
+void bestfit(Item* fileSize, int numberOfFiles){
+    PQ* pq = PQ_init(numberOfFiles);
+    PQ_insert(pq,0);  // Starts the first partition with 0KB used, just to avoid size check.
+}

@@ -3,6 +3,6 @@
 
 #include "PQ.h"
 
-void bestfit(PQ* pq,Item fileSize); //Fits a file into a partition or creates another one.
+void bestfit(Item* fileSize, int numberOfFiles); //Fits a file into a partition or creates another one.
 
 #endif //BESTFIT_H
