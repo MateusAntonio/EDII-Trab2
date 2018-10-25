@@ -15,6 +15,10 @@ Item PQ_delmin(PQ*);   // Removes and returns the smallest item.
 
 Item PQ_min(PQ*);      // Returns the smallest item.
 
+Item PQ_get_item(PQ*,int); //Returns an item of queue by index.
+
+void PQ_set_item_value(PQ*,int,Item); //Sets an item of queue.
+
 bool PQ_empty(PQ*);    // Tests if the queue is empty.
 
 int  PQ_size(PQ*);     // Number of entries in the priority queue.

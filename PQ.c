@@ -54,6 +54,10 @@ Item PQ_min(PQ* pq){
     return pq->usedSpace[1];
 }
 
+Item PQ_get_item(PQ* pq, int k){
+    return pq->usedSpace[k];
+}
+
 void PQ_set_item_value(PQ* pq, int index, Item item){
     pq->usedSpace[index] = item;
     fix_up(pq, index);

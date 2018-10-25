@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "PQ.h"
 #include "worstfit.h"
+#include "bestfit.h"
 
 void file_read(char const *filename);
 
@@ -25,6 +26,8 @@ void file_read(char const *filename){
   worstfit(fileSize, numberOfFiles);
 
   decreasing_worstfit(fileSize, numberOfFiles);
+
+  // bestfit(fileSize, numberOfFiles);
 
   free(fileSize);
 }

@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #define PARTITION_SIZE 1000000
+#define free_space(A) {PARTITION_SIZE - A;}
 
 void worstfit(Item* fileSize, int numberOfFiles){
   PQ* pq = PQ_init(numberOfFiles);
