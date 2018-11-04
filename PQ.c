@@ -30,7 +30,7 @@ void fix_down(PQ* pq, int k){
 }
 
 PQ* PQ_init(int maxN) {
-    PQ *pq = malloc(sizeof(PQ));
+    PQ *pq = malloc(sizeof(*pq));
     pq->usedSpace = malloc((maxN+1) * sizeof(Item));
     pq->size = 0;
     return pq;
@@ -83,4 +83,8 @@ void PQ_print(PQ* pq) {
         printf("%d ", pq->usedSpace[i]);
     }
     printf("\n");
+}
+
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)b - *(int*)a );
 }

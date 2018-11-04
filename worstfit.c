@@ -25,12 +25,9 @@ void worstfit(Item* fileSize, int numberOfFiles){
   PQ_finish(pq);
 }
 
-int cmpfunc (const void * a, const void * b) {
-   return ( *(int*)b - *(int*)a );
-}
-
 void decreasing_worstfit(Item* fileSize, int numberOfFiles){
    qsort(fileSize, numberOfFiles, sizeof(int), cmpfunc);
+   printf("decreasing worstfit: ");
    worstfit(fileSize, numberOfFiles);
 }
 

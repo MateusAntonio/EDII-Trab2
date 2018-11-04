@@ -27,4 +27,6 @@ void PQ_finish(PQ*);   // Cleans up the queue.
 
 void PQ_print(PQ*);    // Print the queue.
 
+int cmpfunc (const void * a, const void * b);  // Compare two items
+
 #endif

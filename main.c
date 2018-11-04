@@ -27,7 +27,9 @@ void file_read(char const *filename){
 
   decreasing_worstfit(fileSize, numberOfFiles);
 
-  // bestfit(fileSize, numberOfFiles);
+  bestfit(fileSize, numberOfFiles);
+
+  decreasing_bestfit(fileSize, numberOfFiles);
 
   free(fileSize);
 }
