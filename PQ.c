@@ -7,7 +7,7 @@ struct pq {
     int size;
 };
 
-void fix_up(PQ* pq, int k) { // swim up
+void fix_up(PQ* pq, int k) {
     while (k > 1 && greater(pq->usedSpace[k/2], pq->usedSpace[k])) {
         exch(pq->usedSpace[k], pq->usedSpace[k/2]);
         k = k/2;
