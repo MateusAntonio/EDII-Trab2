@@ -23,12 +23,16 @@ void file_read(char const *filename){
   
   fclose(fp);
   
+  printf("Worstfit: ");
   worstfit(fileSize, numberOfFiles);
-
-  decreasing_worstfit(fileSize, numberOfFiles);
-
+  
+  printf("Bestfit: ");
   bestfit(fileSize, numberOfFiles);
 
+  printf("Decreasing Worstfit: ");
+  decreasing_worstfit(fileSize, numberOfFiles);
+
+  printf("Decreasing Bestfit: ");
   decreasing_bestfit(fileSize, numberOfFiles);
 
   free(fileSize);

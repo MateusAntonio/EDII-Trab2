@@ -8,12 +8,10 @@
 void worstfit(Item* fileSize, int numberOfFiles){
   PQ* pq = PQ_init(numberOfFiles);
     PQ_insert(pq, 0); // Starts the first partition with 0KB used, just to avoid size check.
-  // for(int i = 0; i < numberOfFiles; i++)
-    // printf("%d \n", fileSize[i]);
 
   for(int i = 0; i < numberOfFiles; i++){
     if((fileSize[i] + PQ_min(pq) <= PARTITION_SIZE)){ // Tests if has avaible space to fit the current file.
-      Item alreadyUsedSpace = PQ_delmin(pq); // Stores the amount of used space.
+      Item alreadyUsedSpace = PQ_delmin(pq); // Stores amount of used space.
       alreadyUsedSpace+=fileSize[i]; //Insert the file at the partition.
       PQ_insert(pq, alreadyUsedSpace); // Recalculate where the partition should be.
     }
@@ -27,7 +25,6 @@ void worstfit(Item* fileSize, int numberOfFiles){
 
 void decreasing_worstfit(Item* fileSize, int numberOfFiles){
    qsort(fileSize, numberOfFiles, sizeof(int), cmpfunc);
-   printf("decreasing worstfit: ");
    worstfit(fileSize, numberOfFiles);
 }
 

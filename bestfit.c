@@ -28,7 +28,6 @@ void bestfit(Item* fileSize, int numberOfFiles){
 }
 
 void decreasing_bestfit(Item* fileSize, int numberOfFiles){
-   qsort(fileSize, numberOfFiles, sizeof(int), cmpfunc);
-   printf("decreasing bestfit: ");
+//    qsort(fileSize, numberOfFiles, sizeof(int), cmpfunc); //Won't be necessary, because when this function is called, the array is already sorted.
    bestfit(fileSize, numberOfFiles);
 }
